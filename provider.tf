@@ -4,8 +4,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    dynamodb_table = "state-lock"
-    bucket = "s3statebackendatindra"
+    dynamodb_table = "state-lock-new"
+    bucket = "s3statebackendatindranew"
     key = "global/mystatefile/terrafrom.tfstate"
     region = "us-east-1"
   }
