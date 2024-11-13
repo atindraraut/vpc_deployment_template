@@ -1,0 +1,39 @@
+# .github/workflows/terraform-destroy.yml
+
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:  # This triggers the workflow manually
+    inputs:
+      environment:
+        description: 'Environment to destroy'
+        required: true
+        default: 'prod'
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout reset_infra branch
+        uses: actions/checkout@v3
+        with:
+          ref: reset_infra
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: '1.4.6'
+
+      - name: Configure AWS credentials (example)
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: 'us-east-1'
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
