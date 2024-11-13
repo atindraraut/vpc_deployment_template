@@ -1,12 +1,10 @@
 name: Terraform Apply
 
 on:
-  workflow_dispatch:  # This triggers the workflow manually
-    inputs:
-      environment:
-        description: 'Environment to apply'
-        required: true
-        default: 'prod'
+  push:
+    branches:
+      - dont_push  # Trigger on push to the dont_push branch
+  workflow_dispatch:  # Trigger manually
 
 jobs:
   terraform-apply:
