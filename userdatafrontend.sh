@@ -90,7 +90,7 @@ cat <<EOF | sudo tee /var/www/html/index.html > /dev/null
     // Function to fetch users from the server and display them
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/users'); // Fetch from the API
+        const response = await fetch('http://10.0.2.10:3000/users'); // Fetch from the API
         if (response.ok) {
           const users = await response.json(); // Parse the response as JSON
 
