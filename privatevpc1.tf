@@ -82,7 +82,7 @@ resource "aws_route" "private_nat" {
 
 # EC2 Instance in Public Subnet
 resource "aws_instance" "ec2_public" {
-  ami           = "ami-0984f4b9e98be44bf" # Replace with a valid AMI ID
+  ami           = "ami-0866a3c8686eaeeba" # Replace with a valid AMI ID
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public.id
   associate_public_ip_address = true
@@ -94,9 +94,10 @@ resource "aws_instance" "ec2_public" {
     aws_secretsmanager_secret_version.rds_secret_version,
     aws_instance.ec2_private
   ]
+  private_ip = "10.0.1.12"
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   # Optional: add user data for EC2 initialization
-  user_data = file("userdatafrontend.sh")
+  user_data = file("userdatabackend.sh")
 }
 
 # EC2 Instance in Private Subnet
@@ -176,8 +177,9 @@ resource "aws_security_group" "rds_sg" {
 
 # Create Secrets Manager secret for RDS credentials in custom JSON format
 resource "aws_secretsmanager_secret" "rds_secret" {
-  name        = "db-creds-secret"
+  name        = "db-creds-secret2"
   description = "RDS credentials stored in Secrets Manager"
+  recovery_window_in_days  = 0
 }
 
 # Push RDS credentials to Secrets Manager in custom JSON format
