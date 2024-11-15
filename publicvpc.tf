@@ -45,12 +45,6 @@ resource "aws_route_table_association" "public_rta" {
   route_table_id = aws_route_table.public_rt.id
 }
 
-
-# Create an EC2 Key Pair (replace with your key pair or use an existing one)
-resource "aws_key_pair" "ec2_key" {
-  key_name   = "my-ec2-key"
-  public_key = file("~/.ssh/id_rsa.pub") # Use your local public key file
-}
 # Create Security Group for RDS
 resource "aws_security_group" "frontend_sg" {
   name        = "frontend-security-group"
@@ -79,6 +73,7 @@ resource "aws_instance" "ec2_instance" {
   tags = {
     Name = "ec2-public-frontend"
   }
+  key_name      = "finalprm"
   depends_on = [
     aws_db_instance.rds,
     aws_secretsmanager_secret_version.rds_secret_version,
