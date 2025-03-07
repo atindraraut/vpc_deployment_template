@@ -66,7 +66,7 @@ resource "aws_security_group" "frontend_sg" {
 }
 # Launch an EC2 instance in the public subnet with user data script
 resource "aws_instance" "ec2_instance" {
-  ami           = "ami-0866a3c8686eaeeba" # Replace with a valid AMI ID
+  ami           = "ami-0984f4b9e98be44bf" # Replace with a valid AMI ID
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
   associate_public_ip_address = true
