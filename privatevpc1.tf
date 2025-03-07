@@ -94,6 +94,7 @@ resource "aws_instance" "ec2_public" {
     aws_secretsmanager_secret_version.rds_secret_version,
     aws_instance.ec2_private
   ]
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   key_name      = "awsterraformtutorial"
   private_ip = "10.0.1.12"
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
@@ -115,6 +116,7 @@ resource "aws_instance" "ec2_private" {
     aws_db_instance.rds,
     aws_secretsmanager_secret_version.rds_secret_version
   ]
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   private_ip = "10.0.2.10"
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   # Optional: add user data for EC2 initialization
