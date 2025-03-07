@@ -102,27 +102,6 @@ resource "aws_instance" "ec2_public" {
   user_data = file("userdatabackend.sh")
 }
 
-# EC2 Instance in Private Subnet
-resource "aws_instance" "ec2_private" {
-  ami           = "ami-0866a3c8686eaeeba" # Replace with a valid AMI ID
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.private.id
-  associate_public_ip_address = false
-  tags = {
-    Name = "ec2-private-instance"
-  }
-  key_name      = "awsterraformtutorial"
-  depends_on = [
-    aws_db_instance.rds,
-    aws_secretsmanager_secret_version.rds_secret_version
-  ]
-  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
-  private_ip = "10.0.2.10"
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  # Optional: add user data for EC2 initialization
-  user_data = file("userdatabackend.sh")
-}
-
 # Create RDS instance in private subnet
 resource "aws_db_instance" "rds" {
   identifier        = "my-rds-instance"
