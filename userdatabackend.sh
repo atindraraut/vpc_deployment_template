@@ -5,12 +5,13 @@
 apt-get update -y
 
 # Install necessary dependencies (AWS CLI, git, curl)
-apt-get install -y awscli git curl
+apt-get install -y git curl
+snap install aws-cli --classic
 
 # Install Node.js (example for version 14.x)
 curl -sL https://deb.nodesource.com/setup_14.x | bash -
 apt-get install -y nodejs
-apt-get install -y npm
+curl -L https://npmjs.org/install.sh
 # Clone the Node.js app from GitHub
 cd /home/ubuntu
 git clone https://github.com/atindraraut/node_backend_template_dummy.git app
