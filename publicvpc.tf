@@ -73,7 +73,7 @@ resource "aws_instance" "ec2_instance" {
   tags = {
     Name = "ec2-public-frontend"
   }
-  key_name      = "finalprm"
+  key_name      = "awsterraformtutorial"
   depends_on = [
     aws_db_instance.rds,
     aws_secretsmanager_secret_version.rds_secret_version,
