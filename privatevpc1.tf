@@ -94,7 +94,7 @@ resource "aws_instance" "ec2_public" {
     aws_secretsmanager_secret_version.rds_secret_version,
     aws_instance.ec2_private
   ]
-  key_name      = "finalprm"
+  key_name      = "awsterraformtutorial"
   private_ip = "10.0.1.12"
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   # Optional: add user data for EC2 initialization
@@ -110,7 +110,7 @@ resource "aws_instance" "ec2_private" {
   tags = {
     Name = "ec2-private-instance"
   }
-  key_name      = "finalprm"
+  key_name      = "awsterraformtutorial"
   depends_on = [
     aws_db_instance.rds,
     aws_secretsmanager_secret_version.rds_secret_version
