@@ -87,7 +87,7 @@ resource "aws_instance" "ec2_public" {
   subnet_id     = aws_subnet.public.id
   associate_public_ip_address = true
   tags = {
-    Name = "ec2-public-instance"
+    Name = "ec2-public-backend"
   }
   depends_on = [
     aws_db_instance.rds,
