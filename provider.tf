@@ -31,3 +31,22 @@ resource "aws_dynamodb_table" "statelock" {
     type = "S"
   }
 }
+
+# godaddy provider for managing sub domains for wasy access for websites
+
+provider "godaddy" {
+  api_key    = var.godaddy_api_key
+  api_secret = var.godaddy_api_secret
+}
+
+variable "godaddy_api_key" {
+  type        = string
+  description = "GoDaddy API Key"
+  sensitive   = true
+}
+
+variable "godaddy_api_secret" {
+  type        = string
+  description = "GoDaddy API Secret"
+  sensitive   = true
+}
