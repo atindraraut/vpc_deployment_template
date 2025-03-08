@@ -77,7 +77,6 @@ resource "aws_instance" "ec2_instance" {
   depends_on = [
     aws_db_instance.rds,
     aws_secretsmanager_secret_version.rds_secret_version,
-    aws_instance.ec2_private
   ]
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   vpc_security_group_ids = [aws_security_group.frontend_sg.id]

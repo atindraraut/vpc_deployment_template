@@ -91,8 +91,7 @@ resource "aws_instance" "ec2_public" {
   }
   depends_on = [
     aws_db_instance.rds,
-    aws_secretsmanager_secret_version.rds_secret_version,
-    aws_instance.ec2_private
+    aws_secretsmanager_secret_version.rds_secret_version
   ]
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   key_name      = "awsterraformtutorial"
