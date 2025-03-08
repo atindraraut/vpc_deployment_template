@@ -17,7 +17,6 @@ resource "aws_s3_bucket" "mybucket"{
     versioning {
         enabled = true
     }
-
 }
 
 
@@ -34,7 +33,7 @@ resource "aws_dynamodb_table" "statelock" {
 
 # godaddy provider for managing sub domains for wasy access for websites
 
-provider "godaddy" {
+provider "godaddy-dns" {
   api_key    = var.godaddy_api_key
   api_secret = var.godaddy_api_secret
 }
@@ -49,4 +48,12 @@ variable "godaddy_api_secret" {
   type        = string
   description = "GoDaddy API Secret"
   sensitive   = true
+}
+
+terraform {
+  required_providers {
+    godaddy-dns = {
+      source = "registry.terraform.io/veksh/godaddy-dns"
+    }
+  }
 }
