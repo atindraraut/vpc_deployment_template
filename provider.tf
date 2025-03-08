@@ -33,7 +33,10 @@ resource "aws_dynamodb_table" "statelock" {
 
 # godaddy provider for managing sub domains for wasy access for websites
 
-provider "godaddy-dns" {}
+provider "godaddy-dns" {
+  api_key    = 3mM44Ywf1966b3_EtLaZvEH851XNoeYQSoGMM
+  api_secret = GcHW4XsxPz5dCGmgF1VhNx
+}
 
 terraform {
   required_providers {
