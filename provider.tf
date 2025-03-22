@@ -30,18 +30,3 @@ resource "aws_dynamodb_table" "statelock" {
     type = "S"
   }
 }
-
-# godaddy provider for managing sub domains for wasy access for websites
-
-provider "godaddy-dns" {
-  api_key    = ""
-  api_secret = ""
-}
-
-terraform {
-  required_providers {
-    godaddy-dns = {
-      source = "registry.terraform.io/veksh/godaddy-dns"
-    }
-  }
-}
