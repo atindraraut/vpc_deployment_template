@@ -90,7 +90,7 @@ cat <<EOF | sudo tee /var/www/html/index.html > /dev/null
     // Function to fetch users from the server and display them
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://demovpcbackend.atindra.in/users'); // Fetch from the API
+        const response = await fetch('http://demovpcbackend.atindra.in:3000/users'); // Fetch from the API
         if (response.ok) {
           const users = await response.json(); // Parse the response as JSON
 
@@ -136,7 +136,7 @@ cat <<EOF | sudo tee /var/www/html/index.html > /dev/null
 
       try {
         // Send POST request to add the new user
-        const response = await fetch('http://demovpcbackend.atindra.in/users', {
+        const response = await fetch('http://demovpcbackend.atindra.in:3000/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
